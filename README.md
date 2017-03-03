@@ -14,3 +14,6 @@ The goal is to write a software pipeline to identify vehicles in a video from a 
 6. Run the pipeline on a video stream and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 7. Estimate a bounding box for vehicles detected.
 
+### Step 1: Perform a Histogram of Oriented Gradients (HOG) feature extraction on a labeled training set of images 
+
+The code for this step is contained in the 2nd code cell of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
