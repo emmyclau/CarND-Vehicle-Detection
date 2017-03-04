@@ -28,11 +28,13 @@ I tried different color spaces, such as, HLS, HSV, YCrCb and found that YCrCb ge
 
 Here are the HOG parameters to generate the HOG features:
 
+```
 color_space = 'YCrCb' # Can be RGB, HSV, LUV, HLS, YUV, YCrCb
 block orient = 9  # HOG orientations
 pix_per_cell = 8 # HOG pixels per cell
 cell_per_block = 2 # HOG cells per block
 hog_channel = "ALL" # Can be 0, 1, 2, or "ALL"
+```
 
 The extracted hog features are:
 
