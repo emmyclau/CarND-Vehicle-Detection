@@ -115,11 +115,11 @@ scaled_X = X_scaler.transform(X)
 
 1. I chose 5 sizes of the sliding window sizes with scales (1, 1.5, 2, 2.5 and 4) of default window 64 x 64.  I originally didn't choose scale of 4 times bigger than 64 x 64 but found that the pipeline couldn't detect vehicles that were very close to the car. 
 
-2. I set the cells per step to be 1 because it gave the best detection.  And also, I added 1 more window on the right and on the bottom of the image so that it could detect the edge better. 
+2. I set the cells per step to be 1 because it gave the best detection when i applied the heat map to remove false positives.  And also, I added 1 more window on the right and on the bottom of the image so that it could detect the edge better. 
 
 3. Also, I limited the area that each sliding window can search.  Below shows the search area each sliding window  would search for but please note that for illusation purposes I only included every other windows in the image. 
 
-    ![ScreenShot](images/image4.png)
+    ![ScreenShot](images/image5.png)
 
 
 
