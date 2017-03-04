@@ -271,7 +271,9 @@ Here is a link to the video result:
 
 ## Discussion
 
-1. The 
+1. The success of vehcile detection really depended on how good the trained classifier was.  When I tried different input features and different classifiers, I found that there were a lot of false positives which made it very hard to detect the vehcile accurately.  Once I found the input features and classifier to use, there were a lot less false positives. 
+
+2. The time it took to process the video is too long.  It is not possible to run this in real time scenario.  I would probably try to reduce the number sliding windows that I used to do the vehicle detection and attain the same result. 
 
 
 
