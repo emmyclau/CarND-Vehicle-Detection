@@ -119,63 +119,69 @@ scaled_X = X_scaler.transform(X)
 
 3. Also, I limited the area that each sliding window can search.  Below shows the search area each sliding window  would search for but please note that for illusation purposes I only included every other windows in the image. 
 
+    ```
+    scales = [1, 1.5, 2, 2.5, 4]
+    y_start_stops = [[380, 460], [380, 560], [380, 620], [380, 680], [350, 700]]
+    
+    ```
+
     ![ScreenShot](images/image5.png)
 
     You can find the code in cell #3 & cell #10 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
 
 
-```
-# Define a single function that can extract features using hog sub-sampling and make predictions   
-def find_cars(img, y_start_stops, scales, svc, X_scaler, 
-              color_space, spatial_size, hist_bins, 
-              orient, pix_per_cell, cell_per_block,
-              hog_channel, spatial_feat, hist_feat, hog_feat):
+    ```
+    # Define a single function that can extract features using hog sub-sampling and make predictions   
+    def find_cars(img, y_start_stops, scales, svc, X_scaler, 
+                  color_space, spatial_size, hist_bins, 
+                  orient, pix_per_cell, cell_per_block,
+                  hog_channel, spatial_feat, hist_feat, hog_feat):
 
-    draw_img = np.copy(img)
-    img = img.astype(np.float32)/255
-    
-    hot_windows = []
-    for y_start_stop, scale in zip(y_start_stops, scales):
-        
-        img_tosearch = img[y_start_stop[0]:y_start_stop[1],:,:]
-    
-        ctrans_tosearch = convert_color(img_tosearch, color_space=color_space)
-        if scale != 1:
-            imshape = ctrans_tosearch.shape
-            ctrans_tosearch = cv2.resize(ctrans_tosearch, (np.int(imshape[1]/scale), np.int(imshape[0]/scale)))
+        draw_img = np.copy(img)
+        img = img.astype(np.float32)/255
 
-        ch1 = ctrans_tosearch[:,:,0]
-        ch2 = ctrans_tosearch[:,:,1]
-        ch3 = ctrans_tosearch[:,:,2]
+        hot_windows = []
+        for y_start_stop, scale in zip(y_start_stops, scales):
 
-        # Define blocks and steps as above
-        nxblocks = (ch1.shape[1] // pix_per_cell)-1
-        nyblocks = (ch1.shape[0] // pix_per_cell)-1 
-        nfeat_per_block = orient*cell_per_block**2
-        
-        # Compute individual channel HOG features for the entire image
-        hog1 = get_hog_features(ch1, orient, pix_per_cell, cell_per_block, feature_vec=False)
-        hog2 = get_hog_features(ch2, orient, pix_per_cell, cell_per_block, feature_vec=False)
-        hog3 = get_hog_features(ch3, orient, pix_per_cell, cell_per_block, feature_vec=False)
+            img_tosearch = img[y_start_stop[0]:y_start_stop[1],:,:]
 
-        # 64 was the orginal sampling rate, with 8 cells and 8 pix per cell
-        window = 64
-        nblocks_per_window = (window // pix_per_cell)-1 
-        cells_per_step = 1  # Instead of overlap, define how many cells to step
-        nxsteps = (nxblocks - nblocks_per_window) // cells_per_step
-        nysteps = (nyblocks - nblocks_per_window) // cells_per_step
-            
-        for xb in range(nxsteps+1):
-            for yb in range(nysteps+1):
-                
-                if xb == (nxsteps + 1):
-                    xpos = ch1.shape[1] - nblocks_per_window                  
-                else:
-                    xpos = xb*cells_per_step
-                    
-                if yb == (nysteps + 1):
-                    ypos = ch1.shape[0] - nblocks_per_window               
-                else:
+            ctrans_tosearch = convert_color(img_tosearch, color_space=color_space)
+            if scale != 1:
+                imshape = ctrans_tosearch.shape
+                ctrans_tosearch = cv2.resize(ctrans_tosearch, (np.int(imshape[1]/scale), np.int(imshape[0]/scale)))
+
+            ch1 = ctrans_tosearch[:,:,0]
+            ch2 = ctrans_tosearch[:,:,1]
+            ch3 = ctrans_tosearch[:,:,2]
+
+            # Define blocks and steps as above
+            nxblocks = (ch1.shape[1] // pix_per_cell)-1
+            nyblocks = (ch1.shape[0] // pix_per_cell)-1 
+            nfeat_per_block = orient*cell_per_block**2
+
+            # Compute individual channel HOG features for the entire image
+            hog1 = get_hog_features(ch1, orient, pix_per_cell, cell_per_block, feature_vec=False)
+            hog2 = get_hog_features(ch2, orient, pix_per_cell, cell_per_block, feature_vec=False)
+            hog3 = get_hog_features(ch3, orient, pix_per_cell, cell_per_block, feature_vec=False)
+
+            # 64 was the orginal sampling rate, with 8 cells and 8 pix per cell
+            window = 64
+            nblocks_per_window = (window // pix_per_cell)-1 
+            cells_per_step = 1  # Instead of overlap, define how many cells to step
+            nxsteps = (nxblocks - nblocks_per_window) // cells_per_step
+            nysteps = (nyblocks - nblocks_per_window) // cells_per_step
+
+            for xb in range(nxsteps+1):
+                for yb in range(nysteps+1):
+
+                    if xb == (nxsteps + 1):
+                        xpos = ch1.shape[1] - nblocks_per_window                  
+                    else:
+                        xpos = xb*cells_per_step
+
+                    if yb == (nysteps + 1):
+                        ypos = ch1.shape[0] - nblocks_per_window               
+                    else:
                         ypos = yb*cells_per_step                    
 
 
