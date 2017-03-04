@@ -42,4 +42,21 @@ The extracted hog features are:
 
 ### Step 2: Append binned color features, as well as histograms of color, to the HOG feature vector.
 
+The code for this step is contained in the 2, 5, 6 & 7th code cells of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
+
+I tried different color spaces in this step.  I found that HLS and HSV actually performed better than YCrCb.  But since HOG is much better on YCrCb, I used YCrCb for all 3 features extraction instead of converting the image in different color spaces for different feature extraction. 
+
+```
+spatial_size = (16, 16) # Spatial binning dimensions
+hist_bins = 16    # Number of histogram bins
+```
+
+Here is an example of the spatial binned color feature::
+
+![ScreenShot](images/image3.png)
+
+Here is an example of the histograms of color features:
+
+
+
 
