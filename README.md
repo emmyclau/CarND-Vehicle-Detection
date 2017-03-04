@@ -73,18 +73,18 @@ scaled_X = X_scaler.transform(X)
 
 1. Because there are a lot of time series data in the label data, I manually separate the vehicle and non-vehicle data into training and test set.  I put the first 20% of vehicle data and non-vehicle data to the test set and the rest to the training set.  You can find the code in cell #8 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
 
-```
+    ```
 
-car_split = len(car_features) * 0.2
-notcar_split = len(notcar_features) * 0.2
+    car_split = len(car_features) * 0.2
+    notcar_split = len(notcar_features) * 0.2
 
-X_test = np.vstack((scaled_X[:int(car_split)], scaled_X[len(car_features):(len(car_features) + int(notcar_split))]))
-y_test = np.hstack((y[:int(car_split)], y[len(car_features):(len(car_features) + int(notcar_split))]))
+    X_test = np.vstack((scaled_X[:int(car_split)], scaled_X[len(car_features):(len(car_features) + int(notcar_split))]))
+    y_test = np.hstack((y[:int(car_split)], y[len(car_features):(len(car_features) + int(notcar_split))]))
 
-X_train = np.vstack((scaled_X[int(car_split):len(car_features)], scaled_X[(len(car_features) + int(notcar_split)):]))
-y_train = np.hstack((y[int(car_split):len(car_features)], y[(len(car_features) + int(notcar_split)):]))
+    X_train = np.vstack((scaled_X[int(car_split):len(car_features)], scaled_X[(len(car_features) + int(notcar_split)):]))
+    y_train = np.hstack((y[int(car_split):len(car_features)], y[(len(car_features) + int(notcar_split)):]))
 
-```
+    ```
 
 
 2. I tried different classifiers to classify vehicles vs. non-vehicles and found that linear SVM didn't have a good accuracy.  I also tried a simple convolutional neural network using features extracted from step 1 & step 2.  However, I found that the accuracy is < 0.9.  The best classifier that I found is the SVC with default settings (i.e. kernel = 'rbf' and gamma = 'auto' and C = 1.0).  The accuracy got up to 0.95 and more.  You can find the code in cell #9 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
