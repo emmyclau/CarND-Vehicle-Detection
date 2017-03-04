@@ -113,9 +113,9 @@ scaled_X = X_scaler.transform(X)
 
 ### Step 4: Implement a sliding-window technique and use the trained classifier to search for vehicles in images.
 
-1. I chose 5 sizes of the sliding window with scale (1, 1.5, 2, 2.5 and 4) of default window 64 x 64.  
+1. I chose 5 sizes of the sliding window with scale (1, 1.5, 2, 2.5 and 4) of default window 64 x 64 and limited the area that each sliding window can search.  
 
-2. I limited the area that each sliding window can search.  
+
 
 
 
