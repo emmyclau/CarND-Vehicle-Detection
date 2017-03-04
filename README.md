@@ -20,7 +20,11 @@ The code for this step is contained in the 2nd code cell of the IPython notebook
 
 I used the labeled data set <a href=https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip>vehicles</a> and <a href=https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip>non-vehicles</a> to extract the HOG features. 
 
-Here is an example of a vehicle image and an exmaple of a non-vehicle image:
+Here is an example of a car image and an exmaple of a non-car image:
+
 ![ScreenShot](images/image1.png)
 
+The extracted hog features are:
+
+![ScreenShot](images/image2.png)
 
