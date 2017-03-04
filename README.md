@@ -240,6 +240,7 @@ I ran the video stream through the pipeline and here are
 
 
     ![ScreenShot](images/image6.png)
+    
 
 
 ### Step 6: Estimate a bounding box for vehicles detected.
