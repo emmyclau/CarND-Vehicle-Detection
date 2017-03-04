@@ -23,7 +23,7 @@ Here is an example of a car image and an exmaple of a non-car image:
 
 ![ScreenShot](images/image1.png)
 
-I tried different color spaces, such as, HLS, HSV, YCrCb and found that YCrCb generated the best result when i tried using the trained model to detect vehicles in the test images. Also, I tested 0,1,2 and 'All' HOG channels and found that 0 performed the worst. 1 & 2 performed well with the validation set with accuracy > 0.98 but bad when detecting vehicles in the test images.  "All" performed good with the validation set with accuracy = 0.9575 but very well when detecting vehicles in the test images. 
+I tried different color spaces, such as, HLS, HSV, YCrCb and found that YCrCb generated the best result when i tried using the trained model to detect vehicles in the test images. Also, I tested 0,1,2 and 'All' HOG channels and found that 0 performed the worst. 1 & 2 performed well with the validation set with accuracy > 0.98 but bad when detecting vehicles in the test images.  There were a lot of false positives.  I found that "All" performed well with the validation set with accuracy = 0.9575 but very well when detecting vehicles in the test images.  Not much false positives were found.  Therfore, i decided to use all 3 channels for HOG features
 
 Here are the HOG parameters I used to generate the HOG features:
 
@@ -50,7 +50,7 @@ spatial_size = (16, 16) # Spatial binning dimensions
 hist_bins = 16    # Number of histogram bins
 ```
 
-Here is an example of the spatial binned color feature::
+Here is an example of the spatial binned color features:
 
 ![ScreenShot](images/image3.png)
 
@@ -58,7 +58,7 @@ Here is an example of the histograms of color features:
 
 ![ScreenShot](images/image4.png)
 
-Please refer to code cell #7 for scaling the feature:
+Please refer to code cell #7 for scaling the features:
 
 ```
 # Fit a per-column scaler
@@ -110,6 +110,12 @@ scaled_X = X_scaler.transform(X)
     t=time.time()
 
     ```
+
+### Step 4: Implement a sliding-window technique and use the trained classifier to search for vehicles in images.
+
+1. I chose 5 sizes of the sliding window with scale (1, 1.5, 2, 2.5 and 4) of default window 64 x 64.  
+
+2. I limited the area that each sliding window can search.  
 
 
 
