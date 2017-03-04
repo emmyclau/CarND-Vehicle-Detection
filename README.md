@@ -121,6 +121,8 @@ scaled_X = X_scaler.transform(X)
 
     ![ScreenShot](images/image5.png)
 
+    You can find the code in cell #3 & cell #10 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
+
 
 ```
 # Define a single function that can extract features using hog sub-sampling and make predictions   
@@ -174,57 +176,61 @@ def find_cars(img, y_start_stops, scales, svc, X_scaler,
                 if yb == (nysteps + 1):
                     ypos = ch1.shape[0] - nblocks_per_window               
                 else:
-                    ypos = yb*cells_per_step                    
-                    
-                    
-                # Extract HOG for this patch
-                hog_feat1 = hog1[ypos:ypos+nblocks_per_window, xpos:xpos+nblocks_per_window].ravel() 
-                hog_feat2 = hog2[ypos:ypos+nblocks_per_window, xpos:xpos+nblocks_per_window].ravel() 
-                hog_feat3 = hog3[ypos:ypos+nblocks_per_window, xpos:xpos+nblocks_per_window].ravel() 
-
-                if hog_channel == 'ALL':
-                    hog_features = np.hstack((hog_feat1, hog_feat2, hog_feat3))
-                elif hog_channel == '0':
-                    hog_features = hog_feat1
-                elif hog_channel == '1':
-                    hog_features = hog_feat2
-                elif hog_channel == '2':
-                    hog_features = hog_feat3
-
-                xleft = xpos*pix_per_cell
-                ytop = ypos*pix_per_cell
-                
-                # Extract the image patch
-                subimg = cv2.resize(ctrans_tosearch[ytop:ytop+window, xleft:xleft+window], (64,64))
-                
-                # Get color features
-                spatial_features = bin_spatial(subimg, size=spatial_size)
-                hist_features = color_hist(subimg, nbins=hist_bins)
-
-                img_features = []
-                if spatial_feat:
-                    img_features.append(spatial_features)
-                if hist_feat:
-                    img_features.append(hist_features)
-                if hog_feat:
-                    img_features.append(hog_features)
-
-                img_features = np.concatenate(img_features).reshape(1, -1)
-                
-                # Scale features and make a prediction
-                test_features = X_scaler.transform(img_features)    
-                test_prediction = svc.predict(test_features)
-                
-                xbox_left = np.int(xleft*scale)
-                ytop_draw = np.int(ytop*scale)
-                win_draw = np.int(window*scale)
-                
-                
-                if test_prediction == 1:
-                    hot_windows.append(((xbox_left, ytop_draw+y_start_stop[0]),(xbox_left+win_draw,ytop_draw+win_draw+y_start_stop[0])))   
-                    
-    return hot_windows
+                        ypos = yb*cells_per_step                    
 
 
-```
+                    # Extract HOG for this patch
+                    hog_feat1 = hog1[ypos:ypos+nblocks_per_window, xpos:xpos+nblocks_per_window].ravel() 
+                    hog_feat2 = hog2[ypos:ypos+nblocks_per_window, xpos:xpos+nblocks_per_window].ravel() 
+                    hog_feat3 = hog3[ypos:ypos+nblocks_per_window, xpos:xpos+nblocks_per_window].ravel() 
 
+                    if hog_channel == 'ALL':
+                        hog_features = np.hstack((hog_feat1, hog_feat2, hog_feat3))
+                    elif hog_channel == '0':
+                        hog_features = hog_feat1
+                    elif hog_channel == '1':
+                        hog_features = hog_feat2
+                    elif hog_channel == '2':
+                        hog_features = hog_feat3
+
+                    xleft = xpos*pix_per_cell
+                    ytop = ypos*pix_per_cell
+
+                    # Extract the image patch
+                    subimg = cv2.resize(ctrans_tosearch[ytop:ytop+window, xleft:xleft+window], (64,64))
+
+                    # Get color features
+                    spatial_features = bin_spatial(subimg, size=spatial_size)
+                    hist_features = color_hist(subimg, nbins=hist_bins)
+
+                    img_features = []
+                    if spatial_feat:
+                        img_features.append(spatial_features)
+                    if hist_feat:
+                        img_features.append(hist_features)
+                    if hog_feat:
+                        img_features.append(hog_features)
+
+                    img_features = np.concatenate(img_features).reshape(1, -1)
+
+                    # Scale features and make a prediction
+                    test_features = X_scaler.transform(img_features)    
+                    test_prediction = svc.predict(test_features)
+
+                    xbox_left = np.int(xleft*scale)
+                    ytop_draw = np.int(ytop*scale)
+                    win_draw = np.int(window*scale)
+
+
+                    if test_prediction == 1:
+                        hot_windows.append(((xbox_left, ytop_draw+y_start_stop[0]),(xbox_left+win_draw,ytop_draw+win_draw+y_start_stop[0])))   
+
+        return hot_windows
+
+
+    ```
+
+### Step 5. Run the pipeline on a video stream and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
+
+
+### Step 6. Estimate a bounding box for vehicles detected.
