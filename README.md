@@ -73,7 +73,7 @@ scaled_X = X_scaler.transform(X)
 
 1. Because there are a lot of time series data in the label data, I manually separated the vehicle and non-vehicle data into training and test set.  I put the first 20% of vehicle data and non-vehicle data to the test set and the rest to the training set.  
 
-You can find the code in cell #8 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
+    You can find the code in cell #8 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
 
     ```
 
@@ -89,25 +89,27 @@ You can find the code in cell #8 of the IPython notebook located in "./vehicle_d
     ```
 
 
-2. I tried different classifiers to classify vehicles vs. non-vehicles and found that linear SVM didn't have a good accuracy.  I also tried a simple convolutional neural network using features extracted from step 1 & step 2.  However, I found that the accuracy is < 0.9.  The best classifier that I found is the SVC with default settings (i.e. kernel = 'rbf' and gamma = 'auto' and C = 1.0).  The accuracy got up to 0.95 and more.  You can find the code in cell #9 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
+2. I tried different classifiers to classify vehicles vs. non-vehicles and found that linear SVM didn't have a good accuracy.  I also tried a simple convolutional neural network using features extracted from step 1 & step 2.  However, I found that the accuracy is < 0.9.  The best classifier that I found is the SVC with default settings (i.e. kernel = 'rbf' and gamma = 'auto' and C = 1.0).  The accuracy got up to 0.95 and more.  
 
-```
-print('Using:',orient,'orientations',pix_per_cell,
-    'pixels per cell and', cell_per_block,'cells per block')
-print('Feature vector length:', len(X_train[0]))
-# Use SVC 
-svc = SVC()
-# Check the training time for the SVC
-t=time.time()
-svc.fit(X_train, y_train)
-t2 = time.time()
-print(round(t2-t, 2), 'Seconds to train SVC...')
-# Check the score of the SVC
-print('Test Accuracy of SVC = ', round(svc.score(X_test, y_test), 4))
-# Check the prediction time for a single sample
-t=time.time()
+    You can find the code in cell #9 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
 
-```
+    ```
+    print('Using:',orient,'orientations',pix_per_cell,
+        'pixels per cell and', cell_per_block,'cells per block')
+    print('Feature vector length:', len(X_train[0]))
+    # Use SVC 
+    svc = SVC()
+    # Check the training time for the SVC
+    t=time.time()
+    svc.fit(X_train, y_train)
+    t2 = time.time()
+    print(round(t2-t, 2), 'Seconds to train SVC...')
+    # Check the score of the SVC
+    print('Test Accuracy of SVC = ', round(svc.score(X_test, y_test), 4))
+    # Check the prediction time for a single sample
+    t=time.time()
+
+    ```
 
 
 
