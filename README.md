@@ -17,3 +17,5 @@ The goal is to write a software pipeline to identify vehicles in a video from a 
 ### Step 1: Perform a Histogram of Oriented Gradients (HOG) feature extraction on a labeled training set of images 
 
 The code for this step is contained in the 2nd code cell of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
+
+I used the labeled data set <a href:https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/vehicles.zip>vehicles</a> and <a href:https://s3.amazonaws.com/udacity-sdc/Vehicle_Tracking/non-vehicles.zip>non-vehicles</a> to extract the HOG features. 
