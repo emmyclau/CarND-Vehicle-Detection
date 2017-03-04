@@ -71,7 +71,9 @@ scaled_X = X_scaler.transform(X)
 
 ### Step 3: Train a classifier to classify vehicles vs. non-vehicles
 
-1. Because there are a lot of time series data in the label data, I manually separate the vehicle and non-vehicle data into training and test set.  I put the first 20% of vehicle data and non-vehicle data to the test set and the rest to the training set.  You can find the code in cell #8 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
+1. Because there are a lot of time series data in the label data, I manually separated the vehicle and non-vehicle data into training and test set.  I put the first 20% of vehicle data and non-vehicle data to the test set and the rest to the training set.  
+
+You can find the code in cell #8 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
 
     ```
 
