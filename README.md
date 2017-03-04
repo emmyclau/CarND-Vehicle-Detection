@@ -239,7 +239,7 @@ scaled_X = X_scaler.transform(X)
 I ran the video stream through the pipeline and here are 
 
 
-    ![ScreenShot](images/image6.png)
+    ![ScreenShot](images/image5.png)
     
 
 
