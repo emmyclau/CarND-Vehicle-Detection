@@ -258,5 +258,20 @@ scaled_X = X_scaler.transform(X)
 
 1. After finding the heatmap from step 5, I applied the scipy.ndimage.measurements.label method to find the bounding boxes of the vehicles. 
 
+![ScreenShot](images/image7.png)
+
+
+## Pipeline (Video) 
+
+Here is a link to the video result:
+
+<a href="https://youtu.be/ncP0g2GUmQw" target="_blank"><img src="http://img.youtube.com/vi/ncP0g2GUmQw/0.jpg" alt="Vehicle Detection"/></a>
+
+
+
+## Discussion
+
+1. The 
+
 
 
