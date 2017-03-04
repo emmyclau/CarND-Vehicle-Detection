@@ -230,7 +230,6 @@ def find_cars(img, y_start_stops, scales, svc, X_scaler,
 
     ```
 
-### Step 5. Run the pipeline on a video stream and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 
 
-### Step 6. Estimate a bounding box for vehicles detected.
+
