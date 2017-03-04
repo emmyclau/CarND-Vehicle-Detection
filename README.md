@@ -57,6 +57,9 @@ Here is an example of the spatial binned color feature::
 
 Here is an example of the histograms of color features:
 
+![ScreenShot](images/image4.png)
+
+
 
 
 
