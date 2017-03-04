@@ -232,10 +232,13 @@ scaled_X = X_scaler.transform(X)
                         hot_windows.append(((xbox_left, ytop_draw+y_start_stop[0]),(xbox_left+win_draw,ytop_draw+win_draw+y_start_stop[0])))   
 
         return hot_windows
-
-
     ```
 
+### Step 5: Run the pipeline on a video stream and create a heat map of recurring detections frame by frame to reject outliers and follow detected vehicles.
 
+
+
+
+### Step 6: Estimate a bounding box for vehicles detected.
 
 
