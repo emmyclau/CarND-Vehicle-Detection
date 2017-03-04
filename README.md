@@ -89,7 +89,7 @@ scaled_X = X_scaler.transform(X)
     ```
 
 
-2. I tried different classifiers to classify vehicles vs. non-vehicles and found that linear SVM didn't have a good accuracy.  I also tried a simple convolutional neural network using features extracted from step 1 & step 2.  However, I found that the accuracy is < 0.9.  The best classifier that I found is the SVC with default settings (i.e. kernel = 'rbf' and gamma = 'auto' and C = 1.0).  The accuracy got up to 0.95 and more.  
+2. I tried different classifiers to classify vehicles vs. non-vehicles and found that linear SVM didn't have good accuracy.  I also tried a simple convolutional neural network using features extracted from step 1 & step 2.  However,the accuracy is not that good < 0.9.  The best classifier that I found was SVC with default settings (i.e. kernel = 'rbf' and gamma = 'auto' and C = 1.0).  The accuracy got up to 0.95 and more.  
 
     You can find the code in cell #9 of the IPython notebook located in "./vehicle_detection_for_submission.ipynb".
 
